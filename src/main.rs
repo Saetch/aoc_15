@@ -10,7 +10,8 @@ mod five_input;
 mod six;
 mod six_input;
 fn main() {
-    let day = 5;
+    let day = 6;
+    
     match day{
         1 => one::one(),
         2 => two::two(),
