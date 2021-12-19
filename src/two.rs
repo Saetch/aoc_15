@@ -10,6 +10,7 @@ pub fn two(){
     let mut lp;
     let mut wp;
     let mut hp;
+    let mut ribbon: u32 = 0;
     for line in lines{
         counter +=1;
         numbers = line.split("x");
@@ -38,14 +39,20 @@ pub fn two(){
         sum += to_add as u32;
         if l >= w && l >= h{
             sum += (w*h) as u32;
+            ribbon += ((2*w + 2*h) + w*l*h) as u32;
         }
         else if w>= l && w >=h{
             sum += (l*h) as u32;
+            ribbon += ((2*l + 2*h) + w*l*h) as u32;
+
         }else{
             sum+= (l*w) as u32;
+            ribbon += ((2*w + 2*l) + w*l*h) as u32;
+
         }
     }
     println!("Result: {}", sum);
+    println!("Ribbon needed: {}", ribbon);
     println!("lines counted: {}",counter);
 
 }
