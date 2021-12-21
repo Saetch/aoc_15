@@ -8,7 +8,7 @@ pub fn six(){
     let mut first_number;
     let mut second_number;
     let mut _skip = 0;
-    let mut dec: u32=0;
+    let mut _dec: u32=0;
     let mut target_x;
     let mut target_y;
     for mut line in input.lines(){
@@ -20,13 +20,13 @@ pub fn six(){
         }
         if line.starts_with("toggle"){
             _skip = 1;
-            dec = 0;
+            _dec = 0;
         }else{
             if line.starts_with("turn on"){
-                dec = 1;
+                _dec = 1;
             }
             else {
-                dec = 2;
+                _dec = 2;
             }
             _skip = 2;
         }
@@ -35,7 +35,7 @@ pub fn six(){
         target_x = line.split(" ").into_iter().skip(_skip+2).next().unwrap().split(",").into_iter().next().unwrap().parse::<u16>().unwrap();
         target_y = line.split(",").skip(2).next().unwrap().split(" ").next().unwrap().parse::<u16>().unwrap();
 
-        match dec {
+        match _dec {
             0 => toggle_through( &mut arr, &first_number, &second_number, &target_x,&target_y),
             1 => turn_on_through( &mut arr, &first_number, &second_number, &target_x,&target_y),
             2 => turn_off_through( &mut arr, &first_number, &second_number, &target_x,&target_y),
