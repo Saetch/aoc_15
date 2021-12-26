@@ -8,13 +8,54 @@ pub fn eight(){
     for line in input.lines(){
 
 
-        let mut str = line.to_owned();
-        str = str.replace("\\\\", "a").replace("\\x", "a").replace("\\\"", "a");
+        let mut stri = line.to_owned();
+        stri = stri.replace("\\\\", "a").replace("\\\"", "a").replace("h", "a");
+        let oof = stri.replace("\\x", "h");
 
-        string_characters+=str.len();
+        let str = stri;
+        if oof.contains("h"){
+            let mut char_iter = oof.chars();
+            let mut charo = char_iter.next();
+            while charo.is_some(){
+                let mut char = charo.unwrap();
+                if char != 'h'{
+                    charo = char_iter.next();
+                    continue;
+                }
+                charo= char_iter.next();
+                if charo.is_none(){
+                    continue;
+                }
+                char = charo.unwrap();
+                match char {
+                    '0' ..= '9' => (),
+                    'a'..= 'f' =>(),
+                    'A' ..='F' =>(),
+                    _ => {charo = char_iter.next(); continue}
+                }
+
+                charo= char_iter.next();
+                if charo.is_none(){
+                    continue;
+                }
+                char = charo.unwrap();
+                match char {
+                    '0' ..= '9' => (),
+                    'a'..= 'f' =>(),
+                    'A' ..='F' =>(),
+                    _ => {charo = char_iter.next(); continue}
+                }
+
+                string_characters-=3;
+
+                
+
+            }
+        }
+        string_characters+=str.len() -2;
         code_characters+=line.len();
     }
-    println!("Code: {}", code_characters);
-    println!("String: {}", string_characters);
-    println!("{}", code_characters-string_characters);
+
+    
+    println!("Code characters - string characters: {}", code_characters-string_characters);
 }
