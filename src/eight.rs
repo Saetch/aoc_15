@@ -2,6 +2,7 @@ use std::fs::read_to_string;
 
 pub fn eight(){
     let mut code_characters = 0;
+    let mut extended_code_characters =0;
     let mut string_characters = 0;
     let inp = read_to_string("eight_input.txt").expect("Could not read file!");
     let input = inp.replace(" ", "");
@@ -55,7 +56,22 @@ pub fn eight(){
         string_characters+=str.len() -2;
         code_characters+=line.len();
     }
-
-    
     println!("Code characters - string characters: {}", code_characters-string_characters);
+    code_characters = 0;
+
+    for line in input.lines(){
+        extended_code_characters+=2;
+        for char in line.chars(){
+            extended_code_characters+=1;
+            code_characters+=1;
+            if char == '\\' || char == '"'{
+                extended_code_characters+=1;
+            }
+        }
+    }
+
+
+
+    println!(" CODE: {} EXT: {}", code_characters, extended_code_characters);
+    println!("ext - code: {}", extended_code_characters-code_characters);
 }
