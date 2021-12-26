@@ -12,8 +12,9 @@ mod six_input;
 mod seven;
 mod seven_input;
 mod eight;
+mod ten;
 fn main() {
-    let day = 8;
+    let day = 10;
     
     match day{
         1 => one::one(),
@@ -24,6 +25,7 @@ fn main() {
         6 => six::six(),
         7 => seven::seven(),
         8 => eight::eight(),
+        10 => ten::ten(),
         _  => println!("Not found!")
     }
 }
